@@ -89,9 +89,7 @@ Example:
       // are not.
       //
       // This is the point where you should make modifications to the DOM (when
-      // necessary), or kick off any processes the element wants to perform.
-
-          
+      // necessary), or kick off any processes the element wants to perform.    
     },
 
     attached: function() {
@@ -101,7 +99,21 @@ Example:
       // This is a good place to perform any work related to your element's
       // visual state or active behavior (measuring sizes, beginning animations,
       // loading resources, etc).
-          
+
+      var card_image = this.$.cardImage;
+      var currentWidth = 350;
+      console.log(card_image);
+      var pHeight = 200;
+      pHeight = (0.56*currentWidth);
+      card_image.height = pHeight; 
+
+      window.onload = function(){   
+        currentWidth = card_image.clientWidth;
+      }
+
+      window.onresize = function() {
+        currentWidth = card_image.clientWidth;
+      };
     },
 
     detached: function() {
@@ -111,28 +123,6 @@ Example:
       // Use this to clean up anything you did in `attached`.
     },
 
-
-    
-
-
   });
-
-window.onload = function(){
-  var pHeight = 200;
-  var currentWidth = document.getElementById('cardImage').clientWidth;
-  pHeight = (0.56*currentWidth);
-  document.getElementById('cardImage').height = pHeight;
-}
-
-window.onresize = function(event) {
-  currentWidth = document.getElementById('cardImage').clientWidth;
-  pHeight = (0.56*currentWidth);
-  document.getElementById('cardImage').height = pHeight;
-};
-
-       
-
-
-
 
 </script>
