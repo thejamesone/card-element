@@ -19,7 +19,7 @@ Card Element
 
 Style, 
 .title
-.abstract
+.subhead
 .body
 
 
@@ -37,7 +37,7 @@ Example:
       box-sizing: border-box;
     }
 
-    .abstract, .title, .body{
+    .subhead, .title, .body{
 
       padding-left: 16px;
     }
@@ -50,9 +50,8 @@ Example:
       <iron-image id="cardImage" style="width:100%;"  sizing="cover" preload fade src="{{img}}"></iron-image>
       <div>
         <h1 class="title">{{title}}</h1>
-        <h2 class="abstract">{{abstract}}</h2>
+        <h2 class="subhead">{{subhead}}</h2>
       </div>
-      <p class="body"></p>
       <content></content>
   </paper-material>
   </template>
@@ -73,7 +72,7 @@ Example:
        */
       title: String,
 
-      abstract: String,
+      subhead: String,
     
       img: {
         type: String,
@@ -102,7 +101,6 @@ Example:
 
       var card_image = this.$.cardImage;
       var currentWidth = 350;
-      console.log(card_image);
       var pHeight = 200;
       pHeight = (0.56*currentWidth);
       card_image.height = pHeight; 
