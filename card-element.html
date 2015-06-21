@@ -37,20 +37,29 @@ Example:
       box-sizing: border-box;
     }
 
-    .subhead, .title, .body{
+    .subhead, .title, #para{
 
       padding-left: 16px;
+    }
+
+    #para{
+      padding-bottom: 24px;
+    }
+
+    .hide{
+      display: none;
     }
 
 
   </style>
 
   <template>
-    <paper-material>
+    <paper-material id="material">
       <iron-image id="cardImage" style="width:100%;"  sizing="cover" preload fade src="{{img}}"></iron-image>
       <div>
         <h1 class="title">{{title}}</h1>
         <h2 class="subhead">{{subhead}}</h2>
+        <p  id="para">{{body}}</p>
       </div>
       <content></content>
   </paper-material>
@@ -73,7 +82,14 @@ Example:
       title: String,
 
       subhead: String,
-    
+
+      body: String,
+
+      hideBody: {
+        type: Boolean,
+        value: true,
+      },
+
       img: {
         type: String,
 
@@ -104,9 +120,24 @@ Example:
       var pHeight = 200;
       pHeight = (0.56*currentWidth);
       card_image.height = pHeight; 
+      var paragraph = this.$.para;
+
+      var imgSrc = card_image.src;
+
+        if (imgSrc == ""){
+          var material = this.$.material;
+          material.removeChild(card_image);
+          material.id = "textCard";
+        }
+
+        
+        if (this.hideBody == true){
+          paragraph.className = "hide";
+        }
 
       window.onload = function(){   
         currentWidth = card_image.clientWidth;
+
       }
 
       window.onresize = function() {
